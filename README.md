@@ -1,7 +1,5 @@
-# Tauri + Vanilla TS
+# Taskly
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
+An app that lets you manage all your tasks using deadlines, priorities, categories, etc.
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+beta ver. 0.1.0
