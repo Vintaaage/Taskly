@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Test Taskly",
+    "priority": "High",
+    "deadline": null,
+    "steps": [
+      {
+        "description": "Ask claude for help",
+        "done": false
+      },
+      {
+        "description": "Ask him again",
+        "done": false
+      }
+    ],
+    "category": "Taskly development"
+  }
+]
