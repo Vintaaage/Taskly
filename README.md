@@ -2,4 +2,7 @@
 
 An app that lets you manage all your tasks using deadlines, priorities, categories, etc.
 
-beta ver. 0.1.0
+ver. 0.2.0
+
+Custom date interface
+Main menu updated

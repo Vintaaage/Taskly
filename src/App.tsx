@@ -19,6 +19,7 @@ export function App() {
   const [detailOpen, setDetailOpen] = createSignal(false);
 
   const viewTitle = () => FILTER_TITLES[currentFilter()] ?? currentFilter();
+  const [isMaximized, setIsMaximized] = createSignal(false);
 
   onMount(async () => {
     await loadTasks();
@@ -32,8 +33,15 @@ export function App() {
 
     // Управление окном
     const win = getCurrentWindow();
+
+    setIsMaximized(await win.isMaximized());
+
+    await win.onResized(async () => {
+      setIsMaximized(await win.isMaximized());
+    });
+
     document.getElementById("btn-minimize")!.addEventListener("click", () => win.minimize());
-    document.getElementById("btn-maximize")!.addEventListener("click", () => win.toggleMaximize());
+
     document.getElementById("btn-close")!.addEventListener("click", () => win.close());
   });
 
@@ -50,24 +58,24 @@ export function App() {
           <span class="logo-dot" />
         </div>
         <div class="window-controls">
-          <button class="wc-btn" id="btn-minimize">—</button>
-          <button class="wc-btn" id="btn-maximize">□</button>
-          <button class="wc-btn wc-close" id="btn-close">✕</button>
+          <button class="wc-btn" id="btn-minimize"><i class="fa-solid fa-window-minimize"></i></button>
+          <button class="wc-btn" onClick={() => getCurrentWindow().toggleMaximize()}>
+            {isMaximized()
+              ? <i class="fa-solid fa-compress" />  
+              : <i class="fa-solid fa-expand" />  
+            }
+          </button>
+          <button class="wc-btn wc-close" id="btn-close"><i class="fa-solid fa-x"></i></button>
         </div>
       </header>
 
       <Sidebar />
 
       <main>
-        <div class="main-header">
-          <h1 class="main-title">{viewTitle()}</h1>
-          <button class="btn btn-primary" onClick={() => setAddOpen(true)}>
-            + New task
-          </button>
-        </div>
-
-        <StatsBar />
-        <TaskList onOpenDetail={openDetail} />
+        <main>
+          <StatsBar onAdd={() => setAddOpen(true)} />
+          <TaskList onOpenDetail={openDetail} />
+        </main>
       </main>
 
       <AddModal open={addOpen()} onClose={() => setAddOpen(false)} />

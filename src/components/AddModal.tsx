@@ -1,5 +1,6 @@
 import { createSignal, createEffect } from "solid-js";
 import { currentFilter, addTask } from "../store";
+import { DatePicker } from "./DatePicker";
 
 interface Props {
   open: boolean;
@@ -10,9 +11,9 @@ export function AddModal(props: Props) {
   let titleRef!: HTMLInputElement;
   let categoryRef!: HTMLInputElement;
   let priorityRef!: HTMLSelectElement;
-  let deadlineRef!: HTMLInputElement;
 
-  // Подставляем категорию если фильтр — это категория
+  const [deadline, setDeadline] = createSignal("");
+
   createEffect(() => {
     if (props.open) {
       const f = currentFilter();
@@ -37,12 +38,12 @@ export function AddModal(props: Props) {
       titleRef.value.trim(),
       categoryRef.value.trim(),
       priorityRef.value,
-      deadlineRef.value || null
+      deadline() || null
     );
 
     titleRef.value = "";
     categoryRef.value = "";
-    deadlineRef.value = "";
+    setDeadline("");
     props.onClose();
   };
 
@@ -56,11 +57,11 @@ export function AddModal(props: Props) {
 
         <div class="form-group">
           <label>Title</label>
-          <input ref={titleRef} type="text" placeholder="What needs to be done?" />
+          <input ref={titleRef} type="text" placeholder="What needs to be done?" class="input"/>
         </div>
         <div class="form-group">
           <label>Category</label>
-          <input ref={categoryRef} type="text" placeholder="e.g. Work, Personal..." />
+          <input ref={categoryRef} type="text" placeholder="e.g. Work, Personal..." class="input"/>
         </div>
         <div class="form-group">
           <label>Priority</label>
@@ -71,8 +72,8 @@ export function AddModal(props: Props) {
           </select>
         </div>
         <div class="form-group">
-          <label>Deadline (optional)</label>
-          <input ref={deadlineRef} type="date" />
+          <label>Deadline</label>
+          <DatePicker value={deadline()} onChange={setDeadline} />
         </div>
 
         <div class="modal-actions">

@@ -1,5 +1,6 @@
 import { Task } from "../types";
-import { removeTask, loadTasks } from "../store";
+import { removeTask } from "../store";
+import { formatDisplay } from "./DatePicker";
 
 interface Props {
   task: Task;
@@ -23,7 +24,7 @@ export function TaskCard(props: Props) {
             <span class="tag tag-category">{props.task.category}</span>
           )}
           {props.task.deadline && (
-            <span class="task-deadline">⏰ {props.task.deadline}</span>
+            <span class="task-deadline"><i class="fa-solid fa-clock"></i> {formatDisplay(props.task.deadline)}</span>
           )}
           {totalSteps() > 0 && (
             <span class="task-deadline">{doneSteps()}/{totalSteps()} steps</span>
@@ -33,16 +34,15 @@ export function TaskCard(props: Props) {
       <div class="task-actions">
         <button
           class="btn btn-ghost"
-          style="font-size:11px;padding:6px 12px;"
           onClick={(e) => { e.stopPropagation(); props.onOpen(props.index); }}
         >
-          Edit
+          <i class="fa-solid fa-pen-to-square"></i>
         </button>
         <button
           class="btn btn-danger"
           onClick={(e) => { e.stopPropagation(); removeTask(props.index); }}
         >
-          Delete
+          <i class="fa-solid fa-trash"></i>
         </button>
       </div>
     </div>

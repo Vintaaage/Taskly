@@ -1,6 +1,7 @@
 import { For, Show, createSignal } from "solid-js";
 import { tasks, currentTaskIndex, setCurrentTaskIndex, removeTask, updateTask } from "../store";
 import { StepItem } from "./StepItem";
+import { formatDisplay } from "./DatePicker";
 
 interface Props {
   open: boolean;
@@ -53,7 +54,7 @@ export function DetailModal(props: Props) {
                 <span class="tag tag-category">{t().category}</span>
               </Show>
               <Show when={t().deadline}>
-                <span class="task-deadline">⏰ {t().deadline}</span>
+                <span class="task-deadline"><i class="fa-solid fa-clock"></i> {formatDisplay(t().deadline ?? "")}</span>
               </Show>
             </div>
 
@@ -73,6 +74,7 @@ export function DetailModal(props: Props) {
               <div class="add-step-row">
                 <input
                   type="text"
+                  class="input"
                   placeholder="Add a step..."
                   value={stepInput()}
                   onInput={(e) => setStepInput(e.currentTarget.value)}

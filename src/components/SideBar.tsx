@@ -41,7 +41,7 @@ export function Sidebar() {
       </For>
 
       <div style="margin-top: auto; font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em;">
-        ver. 0.1.0
+        ver. 0.2.0
       </div>
     </aside>
   );
