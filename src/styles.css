@@ -257,6 +257,30 @@ main {
 
 .btn-danger:hover { background: #f0606015; }
 
+.priority-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.priority-btn {
+  flex: 1;
+  border-radius: var(--radius);
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  transition: all 0.15s;
+  opacity: 0.4;
+}
+
+.priority-btn.active {
+  opacity: 1;
+}
+
 /* DATEPICKER */
 
 .datepicker-placeholder {

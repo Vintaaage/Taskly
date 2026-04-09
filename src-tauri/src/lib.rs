@@ -1,5 +1,4 @@
 use serde::{Serialize, Deserialize};
-use std::fs;
 use std::sync::Mutex;
 use tauri::State;
 

@@ -6,6 +6,9 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["node"], 
+    "esModuleInterop": true, 
+    "lib": ["ESNext", "DOM"] 
   }
 }

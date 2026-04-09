@@ -1,6 +1,8 @@
 import { createSignal, createEffect } from "solid-js";
 import { currentFilter, addTask } from "../store";
 import { DatePicker } from "./DatePicker";
+import { PrioritySelect, Priority } from "./Priority";
+
 
 interface Props {
   open: boolean;
@@ -10,9 +12,10 @@ interface Props {
 export function AddModal(props: Props) {
   let titleRef!: HTMLInputElement;
   let categoryRef!: HTMLInputElement;
-  let priorityRef!: HTMLSelectElement;
 
   const [deadline, setDeadline] = createSignal("");
+
+  const [priority, setPriority] = createSignal<Priority>("Medium");
 
   createEffect(() => {
     if (props.open) {
@@ -37,13 +40,14 @@ export function AddModal(props: Props) {
     await addTask(
       titleRef.value.trim(),
       categoryRef.value.trim(),
-      priorityRef.value,
+      priority(),
       deadline() || null
     );
 
     titleRef.value = "";
     categoryRef.value = "";
     setDeadline("");
+    setPriority("Medium");
     props.onClose();
   };
 
@@ -65,11 +69,7 @@ export function AddModal(props: Props) {
         </div>
         <div class="form-group">
           <label>Priority</label>
-          <select ref={priorityRef}>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Low">Low</option>
-          </select>
+          <PrioritySelect value={priority()} onChange={setPriority} />
         </div>
         <div class="form-group">
           <label>Deadline</label>

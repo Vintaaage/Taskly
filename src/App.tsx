@@ -72,10 +72,8 @@ export function App() {
       <Sidebar />
 
       <main>
-        <main>
-          <StatsBar onAdd={() => setAddOpen(true)} />
-          <TaskList onOpenDetail={openDetail} />
-        </main>
+        <StatsBar onAdd={() => setAddOpen(true)} />
+        <TaskList onOpenDetail={openDetail} />
       </main>
 
       <AddModal open={addOpen()} onClose={() => setAddOpen(false)} />
