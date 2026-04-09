@@ -189,7 +189,6 @@ main::-webkit-scrollbar-thumb {
 main {
   padding: 32px;
   overflow-y: auto;
-  overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
 }
@@ -473,6 +472,112 @@ main {
 }
 
 .datepicker-clear:hover { color: var(--danger); }
+
+
+.timepicker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timepicker-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  text-align: left;
+}
+
+.timepicker-toggle:hover,
+.timepicker-toggle.active {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.timepicker {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  left: calc(100% + 16px);
+  z-index: 200;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: slideIn 0.2s ease;
+}
+
+.timepicker-colon {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-muted);
+  padding: 0 4px;
+  user-select: none;
+}
+
+.drum-wrapper {
+  position: relative;
+  width: 56px;
+}
+
+.drum-highlight {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 40px;
+  transform: translateY(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.drum-scroll {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.drum-scroll:active { cursor: grabbing; }
+.drum-scroll::-webkit-scrollbar { display: none; }
+
+.drum-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-muted);
+  scroll-snap-align: center;
+  transition: color 0.15s, opacity 0.15s;
+  opacity: 0.4;
+  position: relative;
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
+}
+
+.drum-item-selected {
+  color: var(--text);
+  opacity: 1;
+  font-weight: 500;
+}
 
 
 /* TASK LIST */

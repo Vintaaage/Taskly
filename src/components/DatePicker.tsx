@@ -1,4 +1,5 @@
 import { createSignal, createEffect, Show, onCleanup } from "solid-js";
+import { TimePicker } from "./TimePicker";
 
 interface Props {
   value: string;
@@ -160,12 +161,7 @@ export function DatePicker(props: Props) {
                     <div class="datepicker-time-row">
                         <i class="fa-regular fa-clock" />
                         <span>Time (optional)</span>
-                        <input
-                        class="datepicker-time-input"
-                        type="time"
-                        value={time()}
-                        onInput={(e) => HandleTimeChange(e.currentTarget.value)}
-                        />
+                        <TimePicker value={time()} onChange={HandleTimeChange} />
                         <Show when={time()}>
                             <button class="datepicker-time-clear" onClick={() => HandleTimeChange("")}>
                                 <i class="fa-solid fa-xmark" />
