@@ -1,4 +1,4 @@
-import { For, Show, createMemo } from "solid-js";
+import { For, Show, createMemo, createEffect } from "solid-js";
 import { tasks, currentFilter } from "../store";
 import { TaskCard } from "./TaskCard";
 
@@ -6,7 +6,10 @@ interface Props {
   onOpenDetail: (index: number) => void;
 }
 
+
+
 export function TaskList(props: Props) {
+
   const filtered = createMemo(() =>
     tasks()
       .map((t, i) => ({ task: t, index: i }))
