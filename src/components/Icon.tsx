@@ -13,10 +13,6 @@ function getColors() {
 }
 
 export async function updateIcon(tasks: { priority: Priority}[]) {
-
-
-    console.log(Object.getOwnPropertyNames(TauriImage));
-
     const COLORS = getColors();
     const size = 256;
     const grid = 4;

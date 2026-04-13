@@ -31,6 +31,10 @@ export function App() {
 
     document.addEventListener("contextmenu", (e) => e.preventDefault());
 
+    document.addEventListener("visibilitychange", () => {
+      document.body.classList.toggle("paused", document.visibilityState !== "visible");
+    });
+
     // Управление окном
     const win = getCurrentWindow();
 

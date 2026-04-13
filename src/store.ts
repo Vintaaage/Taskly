@@ -2,6 +2,7 @@ import { createSignal } from "solid-js";
 import { invoke } from "@tauri-apps/api/core";
 import type { Task } from "./types";
 import { updateIcon } from "./components/Icon";
+import { listen } from "@tauri-apps/api/event";
 
 export const [tasks, setTasks] = createSignal<Task[]>([]);
 export const [currentFilter, setCurrentFilter] = createSignal("all");
@@ -9,7 +10,6 @@ export const [currentTaskIndex, setCurrentTaskIndex] = createSignal<number | nul
 
 export async function loadTasks() {
   setTasks(await invoke<Task[]>("get_tasks"));
-  console.log(213);
   updateIcon(tasks());
 }
 
